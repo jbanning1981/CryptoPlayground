@@ -9,16 +9,17 @@ namespace HashGenerator.Services
 {
     public class HashService
     {
+        //SHA-1 not provided as it is no longer cryptographically secure.
         private readonly HashSet<string> _availableHashes = new HashSet<string>() { nameof(SHA256), nameof(SHA384), nameof(SHA512) };
 
 
-        public string CreateHash<T>([MaybeNull] Request<T> hashRequest)
+        public string CreateHash<T>(Request<T> hashRequest)
         {
             ValidateRequest(hashRequest);
 
-            using var hash = GetHashAlgorithm(hashRequest.Algorithm);
+            using var hash = GetHashAlgorithm(hashRequest?.Algorithm);
 
-            byte[] hashContents = BuildHashContents(hashRequest);
+            byte[] hashContents = BuildHashContents(hashRequest.Data);
 
             return Convert.ToBase64String(hash.ComputeHash(hashContents));
         }
@@ -32,7 +33,6 @@ namespace HashGenerator.Services
 
         private HashAlgorithm GetHashAlgorithm(string hashName)
         {
-
             switch (hashName)
             {
                 case nameof(SHA256): return SHA256.Create();
@@ -40,7 +40,6 @@ namespace HashGenerator.Services
                 case nameof(SHA512): return SHA512.Create();
                 default: throw new InvalidOperationException($"No hash matched the provided value {hashName}");
             }
-
         }
 
         
@@ -56,7 +55,7 @@ namespace HashGenerator.Services
 
             if(dataType?.GetInterface(nameof(IEnumerable<string>)) is not null)
             {
-                var concatString = string.Join(string.Empty, hashData);
+                var concatString = string.Join(string.Empty, hashData as IEnumerable<string>);
                 return Encoding.UTF8.GetBytes(concatString);
             }
 
