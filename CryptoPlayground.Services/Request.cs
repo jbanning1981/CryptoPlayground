@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HashGenerator.Services
+namespace CryptoPlayground.Services
 {
 
     public class Request<T>

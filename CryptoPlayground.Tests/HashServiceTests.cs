@@ -1,8 +1,9 @@
-using HashGenerator.Services;
+using CryptoPlayground.Services;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace HashGenerator.Tests
+
+namespace CryptoPlayground.Tests
 {
     public class HashServiceTests
     {

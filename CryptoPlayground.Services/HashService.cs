@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 using Ardalis.GuardClauses;
 using System.Diagnostics.CodeAnalysis;
 
-namespace HashGenerator.Services
+namespace CryptoPlayground.Services
 {
     public class HashService
     {
