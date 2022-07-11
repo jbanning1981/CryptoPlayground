@@ -4,6 +4,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using Ardalis.GuardClauses;
 using System.Diagnostics.CodeAnalysis;
+using CryptoPlayground.Domain.Models;
 
 namespace CryptoPlayground.Services
 {

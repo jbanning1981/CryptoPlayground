@@ -1,3 +1,4 @@
+using CryptoPlayground.Domain.Models;
 using CryptoPlayground.Services;
 using System.Security.Cryptography;
 using System.Text;
