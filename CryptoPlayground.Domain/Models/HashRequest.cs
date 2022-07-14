@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace CryptoPlayground.Domain.Models
 {
 
-    public class Request<T>
+    public class HashRequest<T>
     {
         public T? Data { get; init; }
         public string? Algorithm { get; init; }

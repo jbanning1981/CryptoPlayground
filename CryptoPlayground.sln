@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoPlayground.Services",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoPlayground.Tests", "CryptoPlayground.Tests\CryptoPlayground.Tests.csproj", "{0BED6E8E-68FA-4FFF-BAD1-E3DD53435DC4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoPlayground.Domain", "CryptoPlayground.Domain\CryptoPlayground.Domain.csproj", "{5C2FD16F-E177-46CE-A4D5-E09F328A014C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoPlayground.Domain", "CryptoPlayground.Domain\CryptoPlayground.Domain.csproj", "{5C2FD16F-E177-46CE-A4D5-E09F328A014C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoPlayground.Repositories", "CryptoPlayground.Repositories\CryptoPlayground.Repositories.csproj", "{4A0642B1-B4FB-417F-A2A7-7E21C0285634}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{5C2FD16F-E177-46CE-A4D5-E09F328A014C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C2FD16F-E177-46CE-A4D5-E09F328A014C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C2FD16F-E177-46CE-A4D5-E09F328A014C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A0642B1-B4FB-417F-A2A7-7E21C0285634}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A0642B1-B4FB-417F-A2A7-7E21C0285634}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A0642B1-B4FB-417F-A2A7-7E21C0285634}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A0642B1-B4FB-417F-A2A7-7E21C0285634}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
