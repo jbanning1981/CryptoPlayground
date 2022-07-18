@@ -1,5 +1,6 @@
 using CryptoPlayground.Domain.Models;
 using CryptoPlayground.Services;
+using Microsoft.IdentityModel.Tokens;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -25,7 +26,7 @@ namespace CryptoPlayground.Tests
             var request = CreateDefaultStringRequest(null);
             var ex = Assert.Throws<ArgumentNullException>(() => testService.CreateHash(request));
             Assert.IsType<ArgumentNullException>(ex);
-            Assert.Equal(nameof(Request<string>.Data), ex.ParamName);
+            Assert.Equal(nameof(HashRequest<string>.Data), ex.ParamName);
         }
 
         [Theory]
@@ -37,7 +38,7 @@ namespace CryptoPlayground.Tests
             var request = CreateDefaultStringRequest(testString, invalidAlgo);
             var ex = Assert.Throws<ArgumentException>(() => testService.CreateHash(request));
             Assert.IsType<ArgumentException>(ex);
-            Assert.Equal(nameof(Request<string>.Algorithm),ex.ParamName);
+            Assert.Equal(nameof(HashRequest<string>.Algorithm),ex.ParamName);
         }
 
         [Fact]
@@ -46,7 +47,7 @@ namespace CryptoPlayground.Tests
             var request = CreateDefaultStringRequest(testString, null);
             var ex = Assert.Throws<ArgumentNullException>(() => testService.CreateHash(request));
             Assert.IsType<ArgumentNullException>(ex);
-            Assert.Equal(nameof(Request<string>.Algorithm), ex.ParamName);
+            Assert.Equal(nameof(HashRequest<string>.Algorithm), ex.ParamName);
         }
 
         [Fact]
@@ -54,7 +55,7 @@ namespace CryptoPlayground.Tests
         {
             using var verifierHash = SHA256.Create();
 
-            var compareHash = Convert.ToBase64String(verifierHash.ComputeHash(Encoding.UTF8.GetBytes(testString)));
+            var compareHash = Base64UrlEncoder.Encode(verifierHash.ComputeHash(Encoding.UTF8.GetBytes(testString)));
 
             var request = CreateDefaultStringRequest(testString, nameof(SHA256));
 
@@ -69,7 +70,7 @@ namespace CryptoPlayground.Tests
         {
             using var verifierHash = SHA384.Create();
 
-            var compareHash = Convert.ToBase64String(verifierHash.ComputeHash(Encoding.UTF8.GetBytes(testString)));
+            var compareHash = Base64UrlEncoder.Encode(verifierHash.ComputeHash(Encoding.UTF8.GetBytes(testString)));
 
             var request = CreateDefaultStringRequest(testString, nameof(SHA384));
 
@@ -84,7 +85,7 @@ namespace CryptoPlayground.Tests
         {
             using var verifierHash = SHA512.Create();
 
-            var compareHash = Convert.ToBase64String(verifierHash.ComputeHash(Encoding.UTF8.GetBytes(testString)));
+            var compareHash = Base64UrlEncoder.Encode(verifierHash.ComputeHash(Encoding.UTF8.GetBytes(testString)));
 
             var request = CreateDefaultStringRequest(testString, nameof(SHA512));
 
@@ -100,7 +101,7 @@ namespace CryptoPlayground.Tests
             using var verifierHash = SHA256.Create();
             var testStringCollection = testString.Replace(" ","");
 
-            var compareHash = Convert.ToBase64String(verifierHash.ComputeHash(Encoding.UTF8.GetBytes(testStringCollection)));
+            var compareHash = Base64UrlEncoder.Encode(verifierHash.ComputeHash(Encoding.UTF8.GetBytes(testStringCollection)));
 
             var request = CreateDefaultCollectionRequest(null, nameof(SHA256));
 
@@ -116,7 +117,7 @@ namespace CryptoPlayground.Tests
             using var verifierHash = SHA384.Create();
             var testStringCollection = testString.Replace(" ", "");
 
-            var compareHash = Convert.ToBase64String(verifierHash.ComputeHash(Encoding.UTF8.GetBytes(testStringCollection)));
+            var compareHash = Base64UrlEncoder.Encode(verifierHash.ComputeHash(Encoding.UTF8.GetBytes(testStringCollection)));
 
             var request = CreateDefaultCollectionRequest(null, nameof(SHA384));
 
@@ -132,7 +133,7 @@ namespace CryptoPlayground.Tests
             using var verifierHash = SHA512.Create();
             var testStringCollection = testString.Replace(" ", "");
 
-            var compareHash = Convert.ToBase64String(verifierHash.ComputeHash(Encoding.UTF8.GetBytes(testStringCollection)));
+            var compareHash = Base64UrlEncoder.Encode(verifierHash.ComputeHash(Encoding.UTF8.GetBytes(testStringCollection)));
 
             var request = CreateDefaultCollectionRequest(null, nameof(SHA512));
 
@@ -187,26 +188,26 @@ namespace CryptoPlayground.Tests
 
 
 
-        private Request<T> CreateRequest<T>(T data, string algorithm = nameof(SHA512))
+        private HashRequest<T> CreateHashHashRequest<T>(T data, string algorithm = nameof(SHA512))
         {
-            return new Request<T>() { Data = data, Algorithm = algorithm };
+            return new HashRequest<T>() { Data = data, Algorithm = algorithm };
         }
 
-        private Request<string> CreateDefaultStringRequest(string? data = testString, string? algorithm = nameof(SHA512))
+        private HashRequest<string> CreateDefaultStringRequest(string? data = testString, string? algorithm = nameof(SHA512))
         {
-            return new Request<string>() { Data = data, Algorithm = algorithm };
+            return new HashRequest<string>() { Data = data, Algorithm = algorithm };
         }
 
-        private Request<List<string>> CreateDefaultCollectionRequest(List<string>? data, string? algorithm = nameof(SHA512))
+        private HashRequest<List<string>> CreateDefaultCollectionRequest(List<string>? data, string? algorithm = nameof(SHA512))
         {
             data ??= testString.Split(" ").ToList();
 
-            return new Request<List<string>>() { Data = data, Algorithm = algorithm };
+            return new HashRequest<List<string>>() { Data = data, Algorithm = algorithm };
         }
 
-        private Request<object> CreateDefaultObjectRequest(object? data, string? algorithm = nameof(SHA512))
+        private HashRequest<object> CreateDefaultObjectRequest(object? data, string? algorithm = nameof(SHA512))
         {
-            return new Request<object>() { Data = data, Algorithm = algorithm };
+            return new HashRequest<object>() { Data = data, Algorithm = algorithm };
         }
 
     }

@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoPlayground.Tests", "C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoPlayground.Domain", "CryptoPlayground.Domain\CryptoPlayground.Domain.csproj", "{5C2FD16F-E177-46CE-A4D5-E09F328A014C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoPlayground.Repositories", "CryptoPlayground.Repositories\CryptoPlayground.Repositories.csproj", "{4A0642B1-B4FB-417F-A2A7-7E21C0285634}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoPlayground.Repositories", "CryptoPlayground.Repositories\CryptoPlayground.Repositories.csproj", "{4A0642B1-B4FB-417F-A2A7-7E21C0285634}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

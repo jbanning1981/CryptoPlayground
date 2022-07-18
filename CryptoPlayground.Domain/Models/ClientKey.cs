@@ -1,6 +1,6 @@
 ﻿namespace CryptoPlayground.Domain.Models
 {
-    public class ApiKey
+    public class ClientKey
     {
         public Guid ClientId { get; set; }
         public Guid ApiKeyId { get; set; }

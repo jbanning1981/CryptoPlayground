@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace CryptoPlayground.Domain.Models
 {
-
-    public class Request<T>
+    public class KeyRequest
     {
-        public T? Data { get; init; }
-        public string? Algorithm { get; init; }
+        Guid ClientId { get; set; }
+        Guid? KeyId { get; set; }
+
     }
 }
